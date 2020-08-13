@@ -43,14 +43,14 @@ function draw() {
   
   if(gameState === PLAY){
     ground.velocityY = -(6 + 3*count/100);
-    count = count + Math.round(World.frameRate/60);
+    count = count + Math.round(frameRate/60);
     
     if (ground.y < 0){
       ground.y = ground.height/2;
     }
     
     if(keyDown("space") && trex.x >= 359){
-      trex.velocity = -12 ;
+      trex.velocityX = -12 ;
     }
   
     trex.velocityX = trex.velocityX + 0.8;
@@ -104,11 +104,11 @@ function reset(){
 function spawnObstacles() {
   if(World.frameCount % 55 === 0) {
     obstacle = createSprite(365, 400, 40, 10);
-    obstacle.velocityY = - (6 + 3*count/100);
+    obstacle.velocityY = -(6 + 3*count/100);
               
     obstacle.scale = 0.5;
     obstacle.lifetime = 70;
-    ObstaclesGroup.add(obstacle);
+    ObstaclesGroup.push(obstacle);
   }
 }
 
@@ -124,6 +124,6 @@ function spawnClouds() {
     cloud.depth = trex.depth;
     trex.depth = trex.depth + 1;
     
-    CloudsGroup.add(cloud);
+    CloudsGroup.push(cloud);
   }
 }
